@@ -318,12 +318,9 @@ The protocols of this layer provide host-to-host communication services for appl
 ![udp-header](./udp-header.png)
 
 - **Length**: total size in bytes of the UDP header and UDP data 
-  
   - Minimum length $= 8$B (just the UDP header alone)
   - Theoretical max length $= 65535$B ($8$B header + $65527$B of data)
-  
 - **Checksum**: to detect errors in both header and data
-  
   - To compute:
     1. do bitwise addition
 
@@ -333,7 +330,6 @@ The protocols of this layer provide host-to-host communication services for appl
        +    1101 1101
        = 10 0110 0110
        ```
-
     2. if carry, add carry to LSB
 
        ```
@@ -341,7 +337,6 @@ The protocols of this layer provide host-to-host communication services for appl
        +        10
        = 0110 1000
        ```
-
     3. take 1s complement (invert 1s and 0s)
 
        ```
@@ -418,9 +413,8 @@ Solution to handle packet delay:
 
 Example: packet size, $L = 8000 bits$, link rate, $R = 1 Gbps$, $RTT = 30 msec$,
 
-$d_{trans} = \frac{L}{R} = \frac{8000 bits}{10^9 bits/sec} = 0.008 msec$
-$throughput = \frac{L}{RTT + d_{trans}} = \frac{8000}{30.008} = 267 kbps$
-
+$d_{trans} = \frac{L}{R} = \frac{8000 bits}{10^9 bits/sec} = 0.008 msec$  
+$throughput = \frac{L}{RTT + d_{trans}} = \frac{8000}{30.008} = 267 kbps$  
 $U_{sender} = \frac{d_{trans}}{RTT + d_{trans}} = \frac{0.008}{30 + 0.008} = 0.00027s$
 
 >Performance is bad: even though link rate is $1Gbps$, in practice only $267kbps$ is achieved, and only $0.00027s$ of time is spent actually sending something
@@ -481,7 +475,6 @@ $U_{sender} = \frac{d_{trans}}{RTT + d_{trans}} = \frac{0.008}{30 + 0.008} = 0.0
   - Able to hold out of order packets
   - `ACK(M)` means receiver has **received packet `M` only**
 - Has buffer to buffer out-of-order packets
-
 - Max window size = $0.5s$, where $s$ is the maximum sequence number
   - Cannot shift window forward should a packet in the first window be dropped (duplicated ACK if this happens)
 
@@ -535,10 +528,8 @@ $U_{sender} = \frac{d_{trans}}{RTT + d_{trans}} = \frac{0.008}{30 + 0.008} = 0.0
 
 ### Timeout Value
 
-$RTT_{estimated} = (1 - \alpha)RTT_{estimated} + (\alpha)RTT_{sample}$, $\alpha = 0.125$ typically
-
-$RTT_{dev} = (1 - \beta)RTT_{dev} + (\beta)|RTT_{sample} - RTT_{estimated}|$, $\beta = 0.25$ typically
-
+$RTT_{estimated} = (1 - \alpha)RTT_{estimated} + (\alpha)RTT_{sample}$, $\alpha = 0.125$ typically  
+$RTT_{dev} = (1 - \beta)RTT_{dev} + (\beta)|RTT_{sample} - RTT_{estimated}|$, $\beta = 0.25$ typically  
 $Timeout = RTT_{estimated} + 4RTT_{dev}$
 
 |                     Establish Connection                     |                       Close Connection                       |
@@ -621,7 +612,6 @@ The network layer is responsible for [packet forwarding](https://en.wikipedia.or
 ### Distance Vector (DV) Algorithm
 
 - DV: a table containing the shortest distances discovered to all other node
-
 - Every router ($x,y,z$) sends its distance vectors to its directly connected neighbours
 - When $x$ finds out that $y$ has a path to $z$ that is cheaper than $x$ currently knows,
   - $x$ updates its distance vector to $z$ accordingly
@@ -801,15 +791,12 @@ Sending example:
 Sending example:
 
 1. Sender **hashes the message** and the **key**: $H(m,K)$
-
 2. Append $H(m,K)$ to $m$. making $(m,H(m,K)) \rightarrow$ send this to receiver
-
 3. Receiver can calculate his own $H(m,K)$ to check if either $m$ or $K$ has been altered
 
 ### Digital Signature (Encrypted Hash)
 
 - Digital signature should be **unique to everybody**
-
 - Sender sends original message, together with message encrypted by private key
 - Receiver (anybody) can use the public key to decrypt encrypted message and compare with original message
 
@@ -874,9 +861,9 @@ Steps:
 
 ### CRC (Cyclic Redundancy Check)
 
-$R = D \, \% \, G$,
-$R$ is CRC of $r$ bits,
-$D$ is binary, 
+$R = D \, \% \, G$,  
+$R$ is CRC of $r$ bits,  
+$D$ is binary,  
 $G$ is generator of $r+1$ bits, agreed by sender and receiver
 
 - Sender sends $(D, R)$
@@ -983,7 +970,6 @@ Cons:
 ### CSMA/CA (Collison Avoidance)
 
 - 2 senders out of range of one another, but in range of an intermediate router. Senders cannot detect collisions with one another
-
 - Receiver needs to return ACK if a frame is received
 
 ## Switched LAN
