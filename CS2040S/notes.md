@@ -137,7 +137,6 @@ Time: $O(n \log n)$
 
 - Useful to find $k$ largest element in sorted order (where $k < n$). Time: $O(n + k \log n)$
 - **In-place**
-
 - **Non-stable**
 
 ## Mergesort
@@ -176,12 +175,12 @@ function mergeSort(A, low, high)
         merge(low, mid, high)
 ```
 
-If `mergeSort` takes $T(n)$ time,
-line 2 = $c_1$
-line 3 = $c_2$
-line 4 = $T(\frac{n}{2})$
-line 5 = $T(\frac{n}{2})$
-line 6 = $c_3n$ 
+If `mergeSort` takes $T(n)$ time,  
+line 2 = $c_1$  
+line 3 = $c_2$  
+line 4 = $T(\frac{n}{2})$  
+line 5 = $T(\frac{n}{2})$  
+line 6 = $c_3n$  
 
 $T(n) = 2T(\frac{n}{2}) + cn$
 
@@ -235,9 +234,7 @@ function partition(A, low, high)
 - Represented by a contiguous array where root starts at index $1$. For given node with index $x$,
   - Left child has index $2x$
   - Right child has index $2x + 1$
-
 - Sink/Swim: choose larger/smaller of child to swap corresponding to max/min heap to keep heap property
-
 - Assuming Max Heap, parent key will always be $\geq$ 2 direct child key
 
 ### Insertion
@@ -267,9 +264,9 @@ function create(A)
         sink(i)
 ```
 
-Given an **unsorted** array A of elements, heapify requires
-Time: $O(n)$
-Space: $O(1)$
+Given an **unsorted** array A of elements, heapify requires  
+Time: $O(n)$  
+Space: $O(1)$  
 
 ## Binary Search Tree (BST)
 
@@ -308,7 +305,7 @@ Time complexity of $O(h)$ where $h$ is the height of the BST
 
 ### Insert
 
-Same algorithm as search
+Same algorithm as search  
 Time complexity of $O(h)$ where $h$ is the height of the BST
 
 ### Delete
@@ -449,8 +446,8 @@ Operation has amortized cost $T(n)$ if **for every** integer $k$, the cost of $k
 
 ## Graph
 
-Graph $G = \langle V, E \rangle$ ("A tuple of 2 sets")
-$V$ is a set of nodes/vertices
+Graph $G = \langle V, E \rangle$ ("A tuple of 2 sets")  
+$V$ is a set of nodes/vertices  
 $E$ is a set of edges/links
 
 ### Definitions
@@ -468,22 +465,22 @@ $E$ is a set of edges/links
 
 ### Clique (Complete Graph)
 
-All nodes are connected to one another
+All nodes are connected to one another  
 Diameter = $1$
 
 ### Star
 
-One central node. All edges connect center to the other nodes
+One central node. All edges connect center to the other nodes  
 Diameter = $2$
 
 ### Line
 
-Diameter = $n - 1$
+Diameter = $n - 1$  
 Max Degree = $2$
 
 ### Cycle
 
-Diameter = $\frac{n}{2}$
+Diameter = $\frac{n}{2}$  
 Max Degree = $2$
 
 ### Space Complexity
@@ -532,7 +529,7 @@ BFS(G, s, f)
 
 Can fail for graphs with $> 1$ components
 
-Each $V$ must be visited once: $O(V)$
+Each $V$ must be visited once: $O(V)$  
 For every $V$, each $E$ must be examined once: $O(E)$
 
 Time: $O(V + E)$
@@ -736,8 +733,8 @@ Idea:
 2. Greedily grow the set by adding node connected via the lightest edges
 3. Use min heap to order nodes by edge weight
 
-Each vertex is added/removed once from heap: $O(V \log V)$
-Each edge can incur one `decreaseKey`: $O(E \log V)$
+Each vertex is added/removed once from heap: $O(V \log V)$  
+Each edge can incur one `decreaseKey`: $O(E \log V)$  
 Time: $O(E \log V)$
 
 > Can only work on undirected graphs
@@ -768,8 +765,8 @@ for (int i = 0; i < sortedEdges.length; i++) {
 }
 ```
 
-Sorting (line 2): $O(E \log E)$
-Union (line 11-13): $O(E\alpha)$
+Sorting (line 2): $O(E \log E)$  
+Union (line 11-13): $O(E\alpha)$  
 Time: $O(E \log E)$
 
 > Can only work on undirected graphs
