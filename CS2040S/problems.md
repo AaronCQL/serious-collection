@@ -280,7 +280,7 @@ public boolean bfs(int[] arr, int target) {
 }
 ```
 
-Brute force BFS approach
-In worst case, all possible subsets (all nodes in the tree) have to be visited
-Number of nodes $= 2^n$
+Brute force BFS approach  
+In worst case, all possible subsets (all nodes in the tree) have to be visited  
+Number of nodes $= 2^n$  
 Time: $O(2^n)$
