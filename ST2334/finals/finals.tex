@@ -1,0 +1,726 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[a4paper, left=0.4cm, right=0.4cm, top=0.3cm, bottom=0.5cm, landscape]{geometry}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{courier}
+\usepackage{vwcol}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\setitemize{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt,leftmargin=*}
+\setenumerate{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt,leftmargin=*}
+\lstset{
+	belowskip=0.1em,
+	aboveskip=0.1em,
+	basicstyle=\ttfamily,
+}
+
+\begin{document}
+\setlength\parindent{0pt}
+\scriptsize
+\pagenumbering{gobble}
+
+\begin{center}
+{\normalsize\textbf{ST2334 Cheatsheet 19/20 S1 Finals}}
+\end{center}
+\begin{multicols*}{4}
+\noindent
+{\small\textbf{Introduction}}
+\begin{itemize}
+    \item Sample Space: $S$ is the set of all possible outcomes
+    \begin{itemize}
+        \item eg. For rolling 2 dice: $S = \{(1,1),...(6,5),(6,6)\}$
+    \end{itemize}
+    \item Sample Point: Any outcome in the sample space $S$
+    \item Event: Any subset $E$ of the sample space
+    \item Sure Event: the sample space itself
+    \item Null Event: empty set $\emptyset$
+\end{itemize}
+\textbf{Counting} \\
+\tiny
+\begin{tabular}{ |c|c c| }
+    \hline
+    Choose $k$ from $n$ & Order Matters & Not Matter \\ 
+    \hline
+    With Replacement & $n^k$ & $\binom{n + k - 1}{k}$\\ 
+    Without Replacement & $\frac{n!}{(n - k)!}$ & $\binom{n}{k}$ \\ 
+    \hline
+\end{tabular}
+\scriptsize
+\begin{itemize}
+    \item In a circle: $(n - 1)!$ 
+\end{itemize}
+\medskip
+
+{\small\textbf{Probability}} \\
+\textbf{Inclusion-Exclusion Principle}
+\begin{itemize}
+    \item $P(A \cup B) = P(A) + P(B) - P(A \cap B)$
+    \item $P(A \cup B \cup C) = P(A) + P(B) + P(C)$
+    $- [P(A \cap B) + P(A \cap C) + P(B \cap C)]$
+    $+ P(A \cap B \cap C)$
+\end{itemize}
+\textbf{Independent Events}
+\begin{itemize}
+    \item $P(A \cap B) = P(A) \times P(B)$ (use this to prove)
+    \item $P(A|B) = P(A)$
+    \item $P(A) = P(A \cap B) + P(A \cap B^c)$
+\end{itemize}
+\textbf{Mutually Exclusive Events}
+\begin{itemize}
+    \item $P(A \cap B) = 0$ ($B$ cannot happen if $A$ happens)
+    \item $P(A|B) = 0$
+    \item $P(A_1 \cup A_2 \cup \ldots \cup A_n) = P(A_1) + P(A_2) + \ldots + P(A_n)$
+\end{itemize}
+2 non-trivial ($P > 0$) events can only be independent, or mutually exclusive, or neither, but \textbf{never both}\\
+\textbf{Conditional Probability}
+\begin{itemize}
+    \item $P(A|B) = \frac{P(A \cap B)}{P(B)} = \frac{P(B|A)P(A)}{P(B|A)P(A) + P(B|A^c)P(A^c)}$
+    \item $P(A \cap B) = P(B|A)P(A) = P(A|B)P(B)$
+    \item $P(A|B \cap C) = \frac{P(B|A \cap C)P(A|C)}{P(B|C)} = \frac{P(B \cap C|A)P(A)}{P(B \cap C)}$
+\end{itemize}
+\textbf{De Morgan's Law} \\
+\begin{minipage}{.5\linewidth}
+    \begin{itemize}
+        \item $(A \cup B)^c = A^c \cap B^c$
+    \end{itemize}
+\end{minipage}
+\begin{minipage}{.5\linewidth}
+    \begin{itemize}
+        \item $(A \cap B)^c = A^c \cup B^c$
+    \end{itemize}
+\end{minipage}
+\textbf{Partition}
+\begin{itemize}
+    \item If $B_1, B_2, ..., B_n$ are \textbf{mutually exclusive} and \textbf{exhaustive} (they are disjoint and their union $= S$), then $B_1, B_2, ..., B_n$ is a partition of $S$
+\end{itemize}
+\textbf{Law of Total Probability (Bayes' Formula 1)} \\
+If $B_1, B_2, \dots, B_n$ is a partition of $S$:
+\begin{itemize}
+    \item $P(A) = \sum_{i=1}^n P(B_i \cap A) = \sum_{i=1}^n P(B_i)P(A|B_i)$
+\end{itemize}
+With extra conditioning:
+\begin{itemize}
+    \item $P(A|C) = \sum_{i=1}^n P(A|B_i \cap C)P(B_i|C)$\\ $= \sum_{i=1}^n P(A \cap B_i|C)$
+\end{itemize}
+Special case when $B$ and $B^c$ are the partitions:
+\begin{itemize}
+    \item $P(A) = P(A|B)P(B) + P(A|B^c)P(B^c)$
+    \item $P(A) = P(A \cap B) + P(A \cap B^c)$
+\end{itemize}
+\textbf{Bayes' Theorem} \\
+Let $B_1, \ldots , B_n$ be a partition of $S$. $\forall k \in 1, \ldots , n$,
+\begin{itemize}
+    \item $P(B_k|A) = \frac{P(B_k)P(A|B_k)}{\sum_{i=1}^n P(B_i)P(A|B_i)}$
+\end{itemize}
+
+\medskip
+
+{\small\textbf{Discrete Random Variables}} \\
+\textbf{Probability Mass Function ($f_X(x)$)}
+\begin{itemize}
+    \item Probability that a discrete random variable $= x$
+    \item Given by $f_X(x) = P(X = x)$
+    \item When asked to find PMF: find $\forall x$, $P(X = x)$ 
+\end{itemize}
+% \vfill\null
+% \columnbreak
+\medskip
+Properties:
+\begin{enumerate}
+    \item $0 \leq f_X(x) \leq 1$
+    \item $\sum_{x} f_X(x) = 1$
+    \item $P(X \in E) = \sum_{x \in E} f_X(x)$
+\end{enumerate}
+\textbf{Cumulative Distribution Function ($F_X(x)$)}
+\begin{itemize}
+    \item Probability that a discrete random variable is $\leq x$
+    \item $F_X(x) = P(X \leq x) = \sum_{t \leq x} P(X = t)$
+\end{itemize}
+Properties:
+\begin{enumerate}
+    \item $F_X(x)$ is a non-decreasing function of $x$
+    \item $0 \leq F_X(x) \leq 1$
+\end{enumerate}
+
+\medskip
+
+{\small\textbf{Continuous Random Variables}}
+\begin{itemize}
+    \item $P(X = x) = 0$, so $P(a < X < b) = P(a \leq X \leq b)$
+    \item $P(a < X < b) = \int_a^b f_X(x) \, dx = F_X(b) - F_X(a)$
+\end{itemize}
+\textbf{Probability Density Function ($f_X(x)$)} \\
+$f_X$ is PDF of the continuous random variable $X$ iff
+\begin{enumerate}
+    \item $\forall x$, $f_X(x) \geq 0$
+    \item $\int_{-\infty}^{\infty} f_X(x) \, dx = 1$
+\end{enumerate}
+\textbf{Cumulative Distribution Function ($F_X(x)$)}
+\begin{itemize}
+    \item $F_X(x) = P(X \leq x) = \int_{-\infty}^x f_X(t) \, dt$
+\end{itemize}
+Properties:
+\begin{enumerate}
+    \item $F_X(x)$ is a non-decreasing function of $x$
+    \item $\lim_{x \rightarrow -\infty} F_X(x) = 0$ \textbf{AND} $\lim_{x \rightarrow \infty} F_X(x) = 1$
+\end{enumerate}
+
+\medskip
+
+{\small\textbf{Mean \& Variance}} \\
+\textbf{Mean ($E(X) \,|\, \mu_X$)}
+\begin{itemize}
+    \item \textbf{Discrete}: $E(X) = \sum_{x} xP(X = x)$
+    \item \textbf{Continuous}: $E(X) = \int_{-\infty}^{\infty} xf_X(x) \, dx$
+    \item $E[g(X)] = \sum_x g(x) f_X(x)$ \textbf{OR} $\int_{-\infty}^{\infty}g(x)f_X(x) \, dx$ 
+    \begin{itemize}
+        \item eg. $k^{th}$ moment: $E(X^k) = \sum_{x} (x)^kP(X = x)$
+    \end{itemize}
+\end{itemize}
+Properties:
+\begin{enumerate}
+    \item $E(aX + bY +c) = aE(X) + bE(Y) + c$
+\end{enumerate}
+\textbf{Variance ($V(X) \,|\, \sigma^2_X$)}
+\begin{itemize}
+    \item \textbf{Discrete}: $V(X) = \sum_x (x - \mu_X)^2f_X(x)$
+    \item \textbf{Continuous}: $V(X) = \int_{-\infty}^{\infty}(x - \mu_X)^2f_X(x) \, dx$
+    \item $\sigma_X = SD(X) = \sqrt{V(X)}$
+\end{itemize}
+Properties:
+\begin{enumerate}
+    \item $V(X) \geq 0$
+    \item $V(X) = E(X^2) - [E(X)]^2$
+    \item $V(X) = 0 \implies P(X = \mu_X) = 1$ (data no spread)
+    \item $V(a + bX) = b^2V(X)$
+\end{enumerate}
+\textbf{Chebyshev's Inequality} \\
+If a random variable $X$ has mean, $\mu$, and SD, $\sigma$, the probability of
+getting a value which deviates from $\mu$ by at least $k\sigma$ is at most $\frac{1}{k^2}$
+\begin{itemize}
+    \item $P(|X - \mu| > k\sigma) \leq \frac{1}{k^2}$
+    \item $P(|X - \mu| \leq k\sigma) \geq 1 - \frac{1}{k^2}$
+    \item Applying $k = 2$, we conclude that for any random variable $X$, there is at
+    most $\frac{1}{4}$ chance that it is $2$ SD or further away
+    from its mean
+\end{itemize}
+
+\medskip
+
+{\small\textbf{Joint Distribution}} \\
+\textbf{Joint Probability Mass Function}
+\begin{itemize}
+    \item $f_{X, Y}(x, y) \geq 0$, $\forall (x, y) \in R_{X, Y}$
+    \item $\sum_x \sum_y f_{X,Y}(x, y)=1$
+    \item $P((X, Y) \in A) = \sum_{(x, y) \in A} f_{X, Y}(x, y)$
+\end{itemize}
+\medskip
+\textbf{Marginal Probability Mass Function}
+\begin{itemize}
+    \item $f_X(x) = \sum_y P(X = x, Y = y) = \sum_y f_{X,Y}(x,y)$
+    \item $f_Y(y) = \sum_x P(X = x, Y = y) = \sum_x f_{X,Y}(x,y)$
+\end{itemize}
+\textbf{Joint Probability Density Function}
+\begin{itemize}
+    \item $f_{X, Y}(x,y) \geq 0$, $\forall (x, y) \in R_{X, Y}$
+    \item $\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f_{X,Y}(x,y) \, dydx = 1$
+\end{itemize}
+\textbf{Marginal Probability Density Function}
+\begin{itemize}
+    \item $f_X(x) = \int_{-\infty}^{\infty} f_{X,Y}(x,y) \, dy$ 
+    \item $f_Y(y) = \int_{-\infty}^{\infty} f_{X,Y}(x,y) \, dx$ 
+\end{itemize}
+\textbf{Conditional PDF/PMF}
+\begin{itemize}
+    \item $f_{X|Y}(x|y) = \frac{f_{X,Y}(x,y)}{f_Y(y)}$, provided $f_Y(y) > 0$
+\end{itemize}
+Properties:
+\begin{enumerate}
+    \item For a fixed $y$, $f_{X|Y}(x|y) \geq 0$
+    \item \textbf{Discrete}: $\sum_x f_{X|Y}(x|y) = 1$
+    \item \textbf{Continuous}: $\int_{-\infty}^{\infty} f_{X|Y}(x|y) \, dx = 1$
+    \item For $f_X(x) > 0$, $f_{X,Y}(x,y) = f_{Y|X}(y|x)f_X(x)$
+\end{enumerate}
+\textbf{Independent Random Variables} \\
+$X$ and $Y$ are independent iff, $\forall x,y$,
+\begin{itemize}
+    \item $f_{X,Y}(x,y) = f_X(x)f_Y(y)$
+    \item $f_{X|Y}(x|y) = f_X(x)$
+\end{itemize}
+\textbf{Expectation ($E[g(X,Y)]$)}
+\begin{itemize}
+    \item \textbf{Discrete}: $\sum_X\sum_Yg(x,y)f_{X,Y}(x,y)$
+    \item \textbf{Continuous}: $\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} g(x,y)F_{X,Y}(x,y) \, dydx$
+\end{itemize}
+Properties:
+\begin{enumerate}
+    \item $E(a_0 + a_1X_1 + \dots + a_nX_n) = a_0 + a_1E(X_1) + \dots$
+    \item \textbf{Discrete}: $E(XY) = \sum_{x,y}[xy \, f_{X,Y}(x,y)]$
+    \item \textbf{Cont}: $E(XY) = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}xy \, f_{X,Y}(x,y) \, dydx$
+    \item $X$ and $Y$ independent $\implies E(XY) = E(X)E(Y)$
+\end{enumerate}
+To solve for $E(X|Y = n)$:
+\begin{enumerate}
+    \item Find $f_{X|Y}(x|n)$
+    \item Solve for $\sum_xxf_{X|Y}(x|n)$ \textbf{OR} $\int_{-\infty}^{\infty}xf_{X|Y}(x|n)$
+\end{enumerate}
+\textbf{Covariance ($\textnormal{cov}(X,Y) \,|\, \sigma_{X,Y}$)}
+\begin{itemize}
+    \item $\text{cov}(X,Y) = E[(X-\mu_X)(Y-\mu_Y)]$
+\end{itemize}
+Properties:
+\begin{enumerate}
+    \item $\text{cov}(X,Y) = E(XY) - E(X)E(Y)$
+    \item $\text{cov}(X,X) = V(X)$ which is why $\sigma_{X,X} = \sigma^2_{X}$
+    \item $\text{cov}(X,Y) = \text{cov}(Y,X)$
+    \item $\text{cov}(aX + b, cY + d) = ac \times \text{cov}(X,Y)$
+    \item $V(aX + bY) = a^2V(X) + b^2V(Y) + 2ab\times \text{cov}(X,Y)$
+    \item $X$, $Y$ are independent $\implies \text{cov}(X,Y) = 0$
+\end{enumerate}
+\textbf{Correlation Coefficient ($\rho_{X,Y}$)}
+\begin{itemize}
+    \item $\rho_{X,Y} = \frac{\text{cov}(X,Y)}{\sqrt{V(X)}\sqrt{V(Y)}}$
+\end{itemize}
+Properties:
+\begin{enumerate}
+    \item $-1 \leq \rho_{X,Y} \leq 1$
+    \item $X$, $Y$ are independent $\implies \rho_{X,Y} = 0$ \\ 
+        \textbf{*Note}: converse is \textbf{not} true
+\end{enumerate}
+
+\medskip
+
+{\small\textbf{Discrete Distribution}} \\
+\textbf{Discrete Uniform Distribution} \\
+If $X$ assumes $x_1,x_2, \dots , x_k$ with equal probability,
+\begin{itemize}
+    \item $f_X(x) = P(X = x) = 
+        \begin{cases}
+            \frac{1}{k}, & x=x_1,x_2,\dots ,x_k \\
+            0, & \text{otherwise} \\
+        \end{cases}$
+    \item $E(X) = \sum xf_X(x) = \frac{1}{k}\sum_{i=1}^{k}x_i$
+    \item $V(X) = E(X^2) - [E(X)]^2 = \sum(x - \mu)^2f_X(x)$
+\end{itemize}
+\medskip
+\textbf{Bernoulli Distribution ($X \sim \textnormal{Bern}(p)$)}
+\begin{itemize}
+    \item $f_X(x) = P(X=x) = p^x(1-p)^{1-x}$, for $0<p<1$
+    \item Probability distribution of a single experiment with only 2 outcomes (ie. $x=0,1$ only)
+\end{itemize}
+Properties:
+\begin{enumerate}
+    \item $E(X) = p$ and $V(X) = p(1-p)$
+\end{enumerate}
+\textbf{Binomial Distribution ($X \sim \textnormal{B}(n,p)$)}
+\begin{itemize}
+    \item $f_X(x) = \binom{n}{x}p^x(1-p)^{n-x}$, for $0<p<1$
+    \item Distribution of number of \textbf{successes} in $n$ independent Bernoulli trials (ie. $n \in \mathbb{Z}^+$)
+\end{itemize}
+Properties:
+\begin{enumerate}
+    \item $E(X) = np$ and $V(X) = np(1-p)$
+    \item Only 2 possible outcomes: success or failure
+    \item $p$ is constant and independent in each trial
+\end{enumerate}
+\textbf{Binomial Approximations}
+\begin{enumerate}
+    \item $n=1 \implies \text{B}(1,p) = \text{Bern}(p)$
+    \item $(n \geq 20 \wedge p \leq 0.05) \vee (n \geq 100 \wedge np \leq 10) \implies \text{B}(n,p) \approx \text{Poisson}(np)$. If $p \rightarrow 1$, use $q = 1-p$
+    \item $np>5 \, \wedge \, n(1-p)>5 \implies \text{B} \approx N(np,np(1-p))$ \textbf{*Note}: continuity correction:
+    \begin{enumerate}
+        \item $P(X = k) \approx P(k-\frac{1}{2}<X<k+\frac{1}{2})$
+        \item $P(a<X<b) \approx P(a+\frac{1}{2}<X<b-\frac{1}{2})$
+        \item $P(a\leq X\leq b) \approx P(a-\frac{1}{2}<X<b+\frac{1}{2})$
+    \end{enumerate}
+\end{enumerate}
+\textbf{Geometric Distribution ($X \sim \textnormal{Geom}(p)$)}
+\begin{itemize}
+    \item $f_X(x) = (1-p)^{x-1}p$, for $0<p<1$
+    \item Distribution of number of trials required until first success is achieved (ie. $x = 1,2,3,\dots$)
+    \item $X$ denotes number of trials till first success
+\end{itemize}
+Properties:
+\begin{enumerate}
+    \item $E(X) = \frac{1}{p}$ and $V(X) = \frac{1-p}{p^2}$
+    \item $P(X > n) = (1-p)^n$
+    \item $P(X>n+k|X>n) = P(X>k), \forall n,k \geq 1$
+\end{enumerate}
+\textbf{Negative Binomial Distribution ($X \sim \textnormal{NB}(r,p)$)}
+\begin{itemize}
+    \item $f_X(x) = \binom{x-1}{r-1}p^r(1-p)^{x-r}$, for $0<p<1$
+    \item Distribution of number of \textbf{trials} required in order to obtain $r$ successes ($x=r,r+1,\dots$ and $r \in \mathbb{Z}^+$)
+\end{itemize}
+Properties:
+\begin{enumerate}
+    \item $E(X) = \frac{r}{p}$ and $V(X) = \frac{(1-p)r}{p^2}$
+    \item $k=1 \implies \text{NB}(1,p) = \text{Geom}(p)$
+\end{enumerate}
+\textbf{Poisson Distribution ($X \sim \textnormal{Poisson}(\lambda)$)}
+\begin{itemize}
+    \item $f_X(x) = \frac{e^{-\lambda}\lambda^x}{x!}$, for $x=0,1,2,\dots$
+    \item Distribution within fixed interval of time or space
+\end{itemize}
+Properties:
+\begin{enumerate}
+    \item $E(X) = \lambda$ and $V(X) = \lambda$
+    \item $E[X(X-1)] = E(X^2)-E(X) = \lambda^2$
+    \item Number of successes in an interval are independent of those occurring in any other disjoint intervals
+\end{enumerate}
+
+\medskip
+
+{\small\textbf{Continuous Distribution}} \\
+\textbf{Continuous Uniform Distribution ($X \sim U(a,b)$)}
+\begin{itemize}
+    \item $f_X(x) = 
+        \begin{cases}
+            \frac{1}{b-a}, & \text{for } a \leq x \leq b \\
+            0, & \text{otherwise}
+        \end{cases}$
+\end{itemize}
+Properties:
+\begin{enumerate}
+    \item $E(X) = \frac{a+b}{2}$ and $V(X) = \frac{(b-a)^2}{12}$
+    \item $P(c \leq X \leq d) = \int_c^d f_X(x) \, dx = \frac{d-c}{b-a}$
+\end{enumerate}
+\textbf{Exponential Distribution ($X \sim \textnormal{Exp}(\lambda), \, \lambda=\frac{1}{\mu}$)}
+\begin{itemize}
+    \item $f_X(x) =
+    \begin{cases}
+        \lambda e^{-\lambda x}, \\
+        0,
+    \end{cases}$
+$F_X(x) =
+    \begin{cases}
+        1 - e^{-\lambda x}, & x > 0 \\
+        0, & x \leq 0
+    \end{cases}$
+\end{itemize}
+Properties:
+\begin{enumerate}
+    \item $E(X) = SD(X) = \frac{1}{\lambda}$ and $V(X) = \frac{1}{\lambda^2}$
+    \item Memoryless: $P(X>s+t|X>s)=P(X>t)$
+    \item $P(c<X<d) = F_X(d) - F_X(c) = e^{-\lambda c} - e^{-\lambda d}$
+\end{enumerate}
+\textbf{Normal Distribution ($X \sim N(\mu,\sigma^2)$)}
+\begin{itemize}
+    \item $f_X(x) = \frac{1}{\sqrt{2\pi \sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$, $-\infty<x,\mu<\infty$, $\sigma>0$
+\end{itemize}
+Properties:
+\begin{enumerate}
+    \item $E(X) = \mu$ and $V(X) = \sigma^2$
+    \item $\int_{\mu-\sigma}^{\mu+\sigma}f_X(x) \approx 0.68$; 
+        $\int_{\mu-2\sigma}^{\mu+2\sigma}f_X(x) \approx 0.95$;
+    \item $\mu$ affects center, $\sigma^2$ affects shape/spread
+    \item If $X_k \sim N(\mu_k,\sigma_k^2)$ and $W=\sum_{i=1}^na_iX_i$, where $k\in \mathbb{N}\leq n$. Then, $W\sim N(\sum_{i=1}^na_i\mu_i,\sum_{i=1}^na_i^2\sigma_i^2)$
+    \begin{itemize}
+        \item[--] LC of normal random var $X$ is also normal
+    \end{itemize}
+\end{enumerate}
+\textbf{Standard Normal Distribution ($Z \sim N(0,1)$)} \\
+\begin{minipage}{.43\linewidth}
+    \begin{itemize}
+        \item $\phi(x) = \frac{1}{\sqrt{s\pi}}e^{-\frac{x^2}{2}}$
+    \end{itemize}
+\end{minipage}
+\begin{minipage}{.56\linewidth}
+    \begin{itemize}
+        \item $\Phi(x) = \frac{1}{\sqrt{2\pi}}\int^x_{-\infty}e^{-\frac{y^2}{2}} \, dy$
+    \end{itemize}
+\end{minipage}
+\begin{itemize}
+    \item $P(a < Y \sim N(\mu,\sigma^2) \leq b) = \Phi(\frac{b-\mu}{\sigma}) - \Phi(\frac{a-\mu}{\sigma})$
+\end{itemize}
+For $X \sim N(\mu,\sigma^2)$, to normalise for $P(X < c)$:
+\begin{itemize}
+    \item $P(X<c) = P(\frac{X-\mu}{\sigma}<\frac{c-\mu}{\sigma}) = P(Z<\frac{c-\mu}{\sigma})$
+\end{itemize}
+Properties:
+\begin{enumerate}
+    \item $-Z \sim N(0,1)$ and $E(Z^i) = 0$, where $i \in \mathbb{Z^+}$ is odd
+    \item $P(Z < -x) = P(Z \geq x) = 1 - P(Z<x)$
+    \item $Y \sim N(\mu, \sigma^2) \implies \frac{Y-\mu}{\sigma}\sim N(0,1)$
+    \item $X \sim N(0, 1) \implies aX + b \sim N(b, a^2), \, \forall a,b \in \mathbb{R}$
+\end{enumerate}
+
+\medskip
+
+{\small\textbf{Sampling \& Sampling Distributions}} \\
+\textbf{Random Sample} \\
+Let $X$ be a random variable with probability distribution $f_X(x)$, and let $X_1,\dots,X_n$ be $n$ independent random variables, then $(X_1,\dots,X_n)$ is a random sample of size $n$ from population with distribution $f_X(x)$ \\
+\textbf{Sampling Distribution of the Sample Mean ($\bar{X}$)}
+\begin{itemize}
+    \item $\bar{X} = \frac{1}{n}\sum^n_{i=1}X_i =$ sample mean of $n$ random samples with population mean $\mu$ and SD $\sigma$
+    \item Assume sampling from infinite population or a small fraction of a large finite population
+\end{itemize}
+Properties:
+\begin{enumerate}
+    \item $\bar{X}$ is a random variable (since $X_1, \dots, X_n$ are too)
+    \item $E(\bar{X}) = E(X) = \mu$ and $V(\bar{X})=\frac{V(X)}{n}=\frac{\sigma^2}{n}$
+    \item $P(|\bar{X}-\mu|>\varepsilon) \rightarrow 0$ as $n \rightarrow \infty$ (as sample size $n$ increases, probability that sample mean $\bar{X}$ differs from population mean $\mu$ approaches 0)
+\end{enumerate}
+\textbf{Central Limit Theorem}
+\begin{itemize}
+    \item $\bar{X} \sim N(\mu,\frac{\sigma^2}{n})$, for $n$ random samples, if either:
+    \begin{enumerate}
+        \item Population is normally distributed OR
+        \item Population not normally distributed but $n\geq 30$
+    \end{enumerate}
+\end{itemize}
+\textbf{Difference of Two Sample Means} \\
+Let $\bar{X}_1$, $\bar{X}_2$ represent sample mean of two \textbf{independent} random samples of size $n_1, n_2 \geq 30$ with mean $\mu_1, \mu_2$ and variance $\sigma_1^2, \sigma_2^2$ respectively 
+\begin{itemize}
+    \item $E(\bar{X}_1-\bar{X}_2) = E(\bar{X}_1)-E(\bar{X}_2) = \mu_1-\mu_2$
+    \item $V(\bar{X}_1-\bar{X}_2) = V(\bar{X}_1)+V(\bar{X}_2) = \frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}$
+    \item $(\bar{X}_1-\bar{X}_2) \sim N(\mu_1-\mu_2, \frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2})$ approximately
+\end{itemize}
+\textbf{Sample Variance ($S^2$)}
+\begin{itemize}
+    \item $S^2 = \frac{\sum^n_{i=1}(X_i-\bar{X})^2}{n-1} = \frac{(\sum^n_{i=1}X_i^2)-n\bar{X}^2}{n-1}$
+    \item $\frac{(n-1)S^2}{\sigma^2} = \frac{\sum_{i=1}^n(X_i-\bar{X})^2}{\sigma^2} \sim \chi^2(n-1)$
+\end{itemize}
+\textbf{Gamma Function ($\Gamma(\alpha)$)}
+\begin{itemize}
+    \item $\Gamma(\alpha)=\int^\infty_0 y^{\alpha-1}e^{-y} \, dy$
+\end{itemize}
+Properties:
+\begin{enumerate}
+    \item $\Gamma(\alpha)=(\alpha-1)\Gamma(\alpha-1)$ via integration by parts
+    \item $\Gamma(1) = \int^\infty_0 e^{-y} \, dy = 1$
+    \item $\Gamma(n) = (n-1)!$ for integral values of $\alpha$ (ie. $n \in \mathbb{Z}^+)$
+\end{enumerate}
+\textbf{Chi-square Distribution ($X\sim\chi^2(n)$)}
+\begin{itemize}
+    \item PDF of $\chi^2(n) = f_X(x) = \frac{x^{n/2-1}e^{-x/2}}{2^{n/2}\Gamma(n/2)}$, for $x\geq 0$
+\end{itemize}
+Properties:
+\begin{enumerate}
+    \item $E(X) = n$, $V(X) = 2n$ ($n$ = degrees of freedom)
+    \item $\chi^2(n) \sim N(n, 2n)$ approximately for large $n$
+    \item $X \sim N(\mu,\sigma^2) \implies (\frac{X-\mu}{\sigma})^2 \sim \chi^2(1)$
+    \item $\sum_{i=1}^n(\frac{X_i-\mu}{\sigma})^2 \sim \chi^2(n)$, if $X_i$ are random samples
+    \item $\sum_{i=1}^k Y_i \sim \chi^2(\sum_{i=1}^k n_i)$, if $Y_i \sim \chi^2(n_i)$
+\end{enumerate}
+\textbf{Student t Distribution ($T \sim t(n)$)}
+\begin{itemize}
+    \item $T=\frac{Z}{\sqrt{U/n}} \sim t(n)$, if $Z \sim N(0,1)$ and $U \sim \chi^2(n)$
+\end{itemize}
+Properties:
+\begin{enumerate}
+    \item $E(T) = 0$ for $n > 1$ and $V(T) = \frac{n}{n-2}$ for $n > 2$
+    \item PDF is bell shaped and symmetrical at $x=0$
+    \item $T = \frac{\bar{X}-\mu}{S/\sqrt{n}} \sim t(n-1)$, if a random sample of size $n$ is independently drawn from a normal population
+    \item As $n\rightarrow\infty$ ($\geq 30$ in practice), $t(n) \approx N(0,1)$
+\end{enumerate}
+\textbf{F Distribution ($F \sim F(n_1,n_2)$)}
+\begin{itemize}
+    \item $\frac{U/n_1}{V/n_2} \sim F(n_1,n_2)$, if $U \sim \chi^2(n_1)$ and $V \sim \chi^2(n_2)$
+\end{itemize}
+Properties:
+\begin{enumerate}
+    \item $F \sim F(n,m) \implies \frac{1}{F} \sim F(m,n)$
+    \item $F_{n,m;1-\alpha} = \frac{1}{F_{m,n;\alpha}}$
+    \item $\frac{S_1^2/\sigma_1^2}{S_2^2/\sigma_2^2} \sim F(n_1-1,n_2-1)$
+\end{enumerate}
+
+\medskip
+
+{\small\textbf{Normal Distribution Estimation}}
+\begin{itemize}
+    \item Statistic: not dependent on unknown params ($\theta$)
+    \item Estimator: uses some statistic to estimate $\theta$
+    \item $\hat{\Theta}$ is an unbiased estimator of $\theta \iff E(\hat{\Theta})=\theta$ \\
+        eg. $\bar{X}$ is unbiased estimator of $\mu$ as $E(\bar{X})=\mu$
+    \item Interval Estimate of $\theta$: $\hat{\theta}_L<\theta<\hat{\theta}_U$, where $\hat{\theta}_L,\hat{\theta}_U$ depend on value/sampling distribution of statistic
+    \item Confidence Interval (CI): an interval $(\hat{\Theta}_L,\hat{\Theta}_U)$ containing $\theta$ such that $P(\hat{\Theta}_L<\theta<\hat{\Theta}_U)=1-\alpha$
+\end{itemize}
+\textbf{CI For $\mu$ With Known $\sigma$} \\
+Population is normal OR $n$ is sufficiently large ($\geq 30$):
+\begin{itemize}
+    \item $\bar{X}\pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}}$ = $(1-\alpha)100\%$ CI
+    \item $n \geq (z_{\alpha/2}\frac{\sigma}{e})^2$, where Margin of Error $e = z_{\alpha/2}\frac{\sigma}{\sqrt{n}}$
+\end{itemize}
+\textbf{CI For $\mu$ With Unknown $\sigma$} \\
+Population is normal AND $n$ is small ($< 30$):
+\begin{itemize}
+    \item $\bar{X}\pm t_{n-1;\alpha/2}\frac{S}{\sqrt{n}}$ = $(1-\alpha)100\%$ CI
+\end{itemize}
+Population is normal AND $n$ is large ($\geq 30$):
+\begin{itemize}
+    \item $\bar{X}\pm z_{\alpha/2}\frac{S}{\sqrt{n}}$ = $(1-\alpha)100\%$ CI
+\end{itemize}
+\textbf{CI For $\mu_1-\mu_2$ With Known $\sigma_1 \neq \sigma_2$} \\
+Populations are normal OR $n_1,n_2$ are large ($\geq 30$):
+\begin{itemize}
+    \item $(\bar{X}_1 - \bar{X}_2) \pm z_{\alpha/2}\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}$ = $(1-\alpha)100\%$ CI
+\end{itemize}
+\textbf{CI For $\mu_1-\mu_2$ With Unknown $\sigma_1 \neq \sigma_2$} \\
+$n_1,n_2$ are large ($\geq 30$), replace $\sigma_1,\sigma_2$ with $S_1,S_2$:
+\begin{itemize}
+    \item $(\bar{X}_1 - \bar{X}_2) \pm z_{\alpha/2}\sqrt{\frac{S_1^2}{n_1}+\frac{S_2^2}{n_2}}$ = $(1-\alpha)100\%$ CI
+\end{itemize}
+\textbf{CI For $\mu_1-\mu_2$ With Unknown $\sigma_1 = \sigma_2$} \\
+Populations are normal AND $n_1,n_2$ are small ($< 30$):
+\begin{itemize}
+    \item $(\bar{X}_1 - \bar{X}_2) \pm t_{n_1+n_2-2;\alpha/2}S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}$, where \\ $S_p^2=\frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2}$ = pooled variance
+\end{itemize}
+\textbf{CI For $\mu_D = \mu_1-\mu_2$ With Paired Data} \\
+Let $S^2_D = \frac{\sum_{i=1}^n(D_i-\bar{D})^2}{n-1} = \frac{(\sum^n_{i=1}D_i^2)-n\bar{D}^2}{n-1}$, where $D_i = X_i - Y_i$, $\bar{D}=\frac{\sum_{i=1}^n D_i}{n}$ (use GC with $D_i$ values).\\
+Population is normal AND $n$ is small ($< 30$):
+\begin{itemize}
+    \item $\bar{D}\pm t_{n-1;\alpha/2}\frac{S_D}{\sqrt{n}}$ = $(1-\alpha)100\%$ CI
+\end{itemize}
+Population size $n$ is large ($\geq 30$):
+\begin{itemize}
+    \item $\bar{D}\pm z_{\alpha/2}\frac{S_D}{\sqrt{n}}$ = $(1-\alpha)100\%$ CI
+\end{itemize}
+\textbf{CI For $\sigma^2$ With Known $\mu$} \\
+Population is normal, regardless of $n$:
+\begin{itemize}
+    \item $\frac{\sum^n_{i=1}(X_i-\mu)^2}{\chi^2_{n;\alpha/2}} < \sigma^2 < \frac{\sum^n_{i=1}(X_i-\mu)^2}{\chi^2_{n;1-\alpha/2}}$
+\end{itemize}
+\textbf{CI For $\sigma^2$ With Unknown $\mu$} \\
+Population is normal, regardless of $n$:
+\begin{itemize}
+    \item $\frac{(n-1)S^2}{\chi^2_{n-1;\alpha/2}} < \sigma^2 < \frac{(n-1)S^2}{\chi^2_{n-1;1-\alpha/2}}$
+\end{itemize}
+\textbf{CI For $\sigma^2_1/\sigma^2_2$ With Unknown $\mu$} \\
+Populations are normal, regardless of $n$:
+\begin{itemize}
+    \item $\frac{S_1^2}{S_2^2}\frac{1}{F_{n_1-1,n_2-1;\alpha/2}} < \frac{\sigma_1^2}{\sigma_2^2} < \frac{S_1^2}{S_2^2}F_{n_2-1,n_1-1;\alpha/2}$
+\end{itemize}
+
+\medskip
+
+{\small\textbf{Hypothesis Testing}}
+\begin{itemize}
+    \item Reject: hypothesis is false
+    \item Accept: insufficient evidence to reject hypothesis
+    \item Null Hypothesis, $H_0$: parameter to investigate
+    \item Alternate Hypothesis, $H_1$: reject $H_0 \Rightarrow$ accept $H_1$
+    \item Type I Error: rejecting $H_0$ when $H_0$ is true
+    \item Type II Error: not rejecting $H_0$ when $H_0$ is false
+    \item $p$-value: probability of obtaining test results at least as extreme as the results actually observed during the test, assuming null hypothesis is true
+\end{itemize}
+\textbf{Level of Significance ($\alpha$) \& Power ($1-\beta$)}
+\begin{itemize}
+    \item $\alpha = P(\text{Type I Error}) = P(\text{rejecting }H_0|H_0)$
+    \item $\beta = P(\text{Type II Error}) = P(\text{not rejecting } H_0|\neg H_0)$
+    \begin{enumerate}
+        \item Let $X_i \sim N(\mu_i,\sigma^2)$, where $\mu_i$ is original value from $H_0$, find $(1-\alpha)100\%$ CI for $\bar{X}_i$ = ($a, b$)
+        \item Let $X_n \sim N(\mu_n,\sigma^2)$, where $\mu_n$ is a new value, find $P(a<X_n<b) = \beta$
+    \end{enumerate}
+    \item Power = $1-\beta = P(\text{rejecting }H_0|\neg H_0)$
+\end{itemize}
+\textbf{Steps For Hypothesis Testing} \\
+Let $x$ be true param, and $x_0$ be hypothesised param, and let distribution to be used be $D$, thus $X \sim D$
+\begin{enumerate}
+    \item Assume $H_0:x=x_0$ is true, and decide $H_1$ and $\alpha$
+    \item Calculate respective test statistic, $\theta$
+    \item Find $p$-value using $\theta$ and respective $X \sim D$
+    \item $p\text{-value}<\alpha \implies$ reject $H_0$
+\end{enumerate}
+\begin{tabular}{ |c|c|c| }
+    \hline
+    $H_1$       & $p$-value        & Rejection Region \\ 
+    \hline
+    $x > x_0$   & $P(X>\theta)$    & $\theta>Q_{r;\alpha}$\\ 
+    $x < x_0$   & $P(X<\theta)$    & $\theta<Q_{l;\alpha}$\\ 
+    $x \ne x_0$ & $2P(X>|\theta|)$ & $\theta>Q_{r;\frac{\alpha}{2}}$ or $<Q_{l;\frac{\alpha}{2}}$\\ 
+    \hline
+\end{tabular}\\
+\textbf{Hypothesis On $\mu$ With Known $\sigma$} \\
+Population is normal OR $n$ is sufficiently large ($\geq 30$),
+\begin{itemize}
+    \item Test Statistic: $Z=\frac{\bar{X}-\mu_0}{\sigma/\sqrt{n}} \sim N(0,1)$ 
+\end{itemize}
+\textbf{Hypothesis On $\mu$ With Unknown $\sigma$}\\
+Population is normal,
+\begin{itemize}
+    \item Test Statistic: $T = \frac{\bar{X}-\mu_0}{s/\sqrt{n}} \sim t(n-1)$
+\end{itemize}
+\textbf{Hypothesis On $\mu_1-\mu_2$ With Known $\sigma_1,\sigma_2$}\\
+Population is normal OR $n$ is sufficiently large ($\geq 30$),
+\begin{itemize}
+    \item Test Statistic: $Z = \frac{(\bar{X}_1-\bar{X}_2)-(\mu_1-\mu_2)}{\sqrt{\sigma_1^2/n_1+\sigma_2^2/n_2}} \sim N(0,1)$
+\end{itemize}
+\textbf{Hypothesis On $\mu_1-\mu_2$ With Unknown $\sigma_1,\sigma_2$}\\
+Population sizes are sufficiently large ($n_1,n_2 \geq 30$),
+\begin{itemize}
+    \item Test Statistic: $Z = \frac{(\bar{X}_1-\bar{X}_2)-(\mu_1-\mu_2)}{\sqrt{S_1^2/n_1+S_2^2/n_2}} \sim N(0,1)$
+\end{itemize}
+Populations are normal AND $n_1,n_2$ are small ($< 30$),
+\begin{itemize}
+    \item Let $S_p^2=\frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2}$, and $n_p=n_1+n_2-2$
+    \item Test Statistic: $T=\frac{(\bar{X}_1-\bar{X}_2)-(\mu_1-\mu_2)}{S_p\sqrt{1/n_1+1/n_2}} \sim t(n_p)$
+\end{itemize}
+\textbf{Hypothesis On $\mu_1-\mu_2$ With Paired Data}\\
+Population is normal AND $n$ is small ($<30$),\\
+Let $\bar{D}=\bar{X}-\bar{Y}$, $\mu_D=\mu_1-\mu_2$, $H_0:\mu_D=\mu_{D,0}$,
+\begin{itemize}
+    \item Test Statistic: $T = \frac{\bar{D}-\mu_{D,0}}{S_D/\sqrt{n}} \sim t(n-1)$
+\end{itemize}
+Population size is large ($n\geq 30$),
+\begin{itemize}
+    \item Test Statistic: $Z = \frac{\bar{D}-\mu_{D,0}}{S_D/\sqrt{n}} \sim N(0,1)$
+\end{itemize}
+\textbf{Hypothesis On $\sigma$}\\
+Population is (approximately) normal,
+\begin{itemize}
+    \item Test Statistic: $\chi^2=\frac{(n-1)S^2}{\sigma_0^2} \sim \chi^2(n-1)$
+\end{itemize}
+\textbf{Hypothesis On $\sigma_1-\sigma_2$ With Unknown $\mu_1,\mu_2$}\\
+Populations are normal,
+\begin{itemize}
+    \item Test Statistic: $F = \frac{S_1^2}{S_2^2} \sim F(n_1-1,n_2-1)$
+    \item Two-tailed: $p$-value = $2\,min\{P(F<\theta),P(F>\theta)\}$
+\end{itemize}
+
+\medskip
+
+{\small\textbf{Miscellaneous}}\\
+\begin{tabular}{ |c|c| }
+    \hline
+    \textbf{Calculation} & \textbf{TI84 Command}        \\ 
+    \hline
+    $\bar{x}, \sum x,\sum x^2, S_x$ & \texttt{stat} $\rightarrow$ \texttt{1-Var Stats} \\
+    \hline
+    $P(\text{B}(n,p) \leq a)$ & \texttt{binomcdf(n,p,a)} \\
+    $P(\text{Geom}(p) \leq a)$ & \texttt{geometcdf(p,a)}\\
+    \hline
+    $P(a<N(0,1)<b)$   & \texttt{normalcdf(a,b,0,1)} \\ 
+    $Q_{r;\alpha} = z_\alpha$  & \texttt{invNorm($\alpha$,0,1,RIGHT)}  \\ 
+    $Q_{l;\alpha} = -z_\alpha$  & \texttt{invNorm($\alpha$,0,1,LEFt)}  \\ 
+    \hline
+    $P(a<t(n)<b)$ & \texttt{tcdf(a,b,n)} \\
+    $Q_{r;\alpha} = t_{n;\alpha}$ & \texttt{invT(1-$\alpha$,n)} \\ 
+    $Q_{r;\alpha} = -t_{n;\alpha}$ & \texttt{invT($\alpha$,n)} \\ 
+    \hline
+    $P(a<\chi^2(n)<b)$ & \texttt{$\chi^2$cdf(a,b,n)} \\
+    $Q_{r;\alpha} = \chi^2_{n;\alpha}$ & use $\chi^2$ table \\
+    $Q_{l;\alpha} = \chi^2_{n;1-\alpha}$ & use $\chi^2$ table \\
+    \hline
+    $P(a<F(n,m)<b)$ & \texttt{Fcdf(a,b,n,m)} \\
+    $Q_{r;\alpha} = F_{n,m;\alpha}$ & use $F$ table \\
+    $Q_{l;\alpha} = F_{n,m;1-\alpha}$ & use $F$ table \\
+    \hline
+\end{tabular}
+\begin{itemize}
+    \item $Q_{r;\alpha}$ is the value where $P(\theta > Q_{r;\alpha}) = \alpha$
+    \begin{itemize}
+        \item Area under graph \textbf{right} of $x = Q_{r;\alpha}$ is $\alpha$
+    \end{itemize}
+    \item $Q_{l;\alpha}$ is the value where $P(\theta < Q_{l;\alpha}) = \alpha$
+    \begin{itemize}
+        \item Area under graph \textbf{left} of $x = Q_{l;\alpha}$ is $\alpha$
+    \end{itemize}
+    \item IBP: $\int_a^bu\,dv = [uv]_a^b-\int_a^bv\,du$ (LIATE for $u$) 
+\end{itemize}
+
+\end{multicols*}
+\end{document}
