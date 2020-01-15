@@ -12,7 +12,7 @@ For example, `n = 3`, `[1,2,3,4,5,6,7]` is rotated to `[5,6,7,1,2,3,4]`.
 3. Reverse whole array
     - `[5,6,7,1,2,3,4]`
 
-Time: $O(n)$
+Time: $O(n)$  
 Space: $O(1)$
 
 ## K Largest Element
@@ -24,7 +24,7 @@ Time: $O(n + k\log n)$, worst case $k = n$
 Space: $O(1)$
 
 **Quick-select**
-Time: $O(n^2)$ worst, $O(n)$ average
+Time: $O(n^2)$ worst, $O(n)$ average  
 Space: $O(1)$
 
 ## Next Largest Permutation/Number
@@ -36,7 +36,7 @@ eg. given `[5,3,1,7,6,4,2]`, output `[5,3,2,1,4,6,7]`
 3) Swap the numbers found in step 1 and 2 (`[5,3,2,7,6,4,1]`)
 4) Reverse array for index more than the number found in step 1 (`[5,3,2,1,4,6,7]`)
 
-Time: $O(n)$
+Time: $O(n)$  
 Space: $O(1)$
 
 ## Reverse Stack/Queue Recursively
@@ -59,7 +59,7 @@ void reverse(A) {
 }
 ```
 
-Time: $O(n)$
+Time: $O(n)$  
 Space: $O(n)$
 
 ## Reverse Singly Linked List
@@ -75,7 +75,7 @@ while current is not null
 head = reversed_list
 ```
 
-Time: $O(n)$
+Time: $O(n)$  
 Space: $O(1)$
 
 ## Height of a Binary Tree
@@ -91,7 +91,7 @@ function height(tree)
     return max(heightLeft, heightRight) + 1
 ```
 
-Time: $O(n)$
+Time: $O(n)$  
 Space: $O(n)$
 
 ## Diameter of a Tree
@@ -102,8 +102,8 @@ Space: $O(n)$
 
 BFS: $O(V + E)$
 
-Assuming Binary Tree, where $edges = vertices - 1$,
-Time: $O(n)$
+Assuming Binary Tree, where $edges = vertices - 1$,  
+Time: $O(n)$  
 Space: $O(n)$
 
 ## Least Common Ancestor (Binary Tree)
@@ -140,7 +140,7 @@ function findLCA(root, x, y)
         return rightLCA
 ```
 
-Time: $O(n)$
+Time: $O(n)$  
 Space: $O(n)$
 
 ## Flatten BST
@@ -148,7 +148,7 @@ Space: $O(n)$
 1) In-order traversal
 2) Perform right rotation on node if there exists left child on node
 
-Time: $O(n)$
+Time: $O(n)$  
 Space: $O(1)$ (nodes are simply moved about, not created)
 
 ## 2 Array Median
@@ -207,14 +207,14 @@ public ListNode mergeKLists(ListNode[] lists) {
 - Each Insert/ExtractMin operation is $O(\log k)$
 - This is done $n$ times
 
-Time: $O(n\log k)$
+Time: $O(n\log k)$  
 Space: $O(k)$
 
 ## Line Intersection
 
 Suppose you are given two sets of 2-dimensional points $P = \{p_1, p_2, ..., p_N\}$ and $Q = \{q_1, q_2, ..., q_N\}$. Connect each point $p_i$ to the corresponding $q_i$. Give an efficient algorithm for determining how many pairs of these line segments intersect.
 
-Similar to counting total number of inversions in an array.
+Similar to counting total number of inversions in an array.  
 Time: $O(n\log n)$
 
 ## Bipartite Graph
