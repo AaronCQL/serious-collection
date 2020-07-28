@@ -42,8 +42,10 @@ Assumes worst case unless otherwise state:
 
 ## Master Theorem
 
-$T(n) = aT(\frac{n}{b}) + cn^k$
-$T(1) = c$
+$$
+T(n) = aT(\frac{n}{b}) + cn^k \\
+T(1) = c
+$$
 
 |  Condition  |    Upper Bound    |
 | :---------: | :---------------: |
