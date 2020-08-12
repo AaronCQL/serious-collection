@@ -20,8 +20,8 @@
 
 ## Setup
 
-This repository contains personal notes/cheatsheets made using Markdown and/or LaTeX. Each directory contains the PDF, as well as the assets used and the source code (`.md`/`.tex`) that generated the PDF.
+This repository contains personal notes/cheatsheets made using Markdown and/or LaTeX. Each directory contains the PDF, as well as the assets used and the source code (`.md`/`.tex`) which generated the PDF.
 
-**Markdown**: relies on [Mathjax](https://www.mathjax.org/) support. To view the above `.md` files directly in Github with properly rendered math equations, use Chrome with this [Mathjax Plugin](https://chrome.google.com/webstore/detail/mathjax-plugin-for-github/ioemnmodlmafdkllaclgeombjnmnbima?hl=en) (otherwise, PDF copies are also available in the respective directories). PDF files are generated via VSC with the [Markdown Preview Enhanced](https://shd101wyy.github.io/markdown-preview-enhanced/#/) plugin.
+**Markdown**: most of the content has LaTeX flavoured math in them. To preview the `.md` files directly in Github with properly rendered math, use [Chrome with this extension](https://chrome.google.com/webstore/detail/github-math-display/cgolaobglebjonjiblcjagnpmdmlgmda) written by yours truly (otherwise, PDF copies are also available in the respective directories). PDF files are generated via VSC with the [Markdown Preview Enhanced](https://shd101wyy.github.io/markdown-preview-enhanced/#/) plugin.
 
 **LaTeX**: PDF files are generated via VSC with the [LaTeX Workshop](https://github.com/James-Yu/LaTeX-Workshop) plugin. Alternatively, use the `latexmk -pdf` command.
