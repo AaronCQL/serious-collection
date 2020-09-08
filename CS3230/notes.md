@@ -652,7 +652,7 @@ Thus, the total amortised cost of the $n$ operations is
 $$
 \begin{aligned}
 \sum_{i=1}^n \hat{c}_i &= \sum_{i=1}^n (c_i + \Phi(D_i) - \Phi(D_{i-1}))\\
-  &= \sum_{i=1}^n c_i + \Phi(D_n) - \Phi(D_0)  
+  &= \sum_{i=1}^n c_i + \Phi(D_n) - \Phi(D_0)
 \end{aligned}
 $$
 
@@ -661,7 +661,7 @@ We need to show that
 $$
 \begin{aligned}
 \Phi(D_0) &= 0\\
-\Phi(D_i) &\geq 0, \forall i  
+\Phi(D_i) &\geq 0, \forall i
 \end{aligned}
 $$
 
