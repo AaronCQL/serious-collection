@@ -305,6 +305,7 @@ class Team {
 ```
 
 <img src='https://nus-cs2103-ay1920s2.github.io/website/book/uml/classDiagrams/aggregation/what/images/notation.png' height='50'/>
+
 - Aggregation is not recommended to be used in UML because it adds more confusion than clarity
 
 ### Dependency
@@ -389,8 +390,7 @@ An association class represents additional information about an association.
   - Is not bug fixing: By definition, refactoring is different from bug fixing or any other modifications that alter the external behavior (e.g. adding a feature) of the component in concern
   - Can improve the performance of the refactored code
 - **Assertions**: used to define assumptions about the program state so that the runtime can verify them
-  - Java disables assertions by default
-    - Thus, do not use assertions to do actual work
+  - Java disables assertions by default (**do not use assertions to do actual work**)
   - Not used in unit testing nor in exception handling
   - Suitable for verifying assumptions about internal invariants, control-flow invariants, preconditions, postconditions, and class invariants
   - Both Exceptions (indicates unusual condition created by user) and Assertions (indicates programmer's mistake) serve different purposes and thus should both be utilised in code
@@ -436,9 +436,9 @@ Short, simple descriptions of a feature told from the perspective of the person 
 - Handy for recording requirements during early stages of requirements gathering
 - High-level user stores, called epics (or themes) cover bigger functionality
   - eg. `[Epic]` As a lecturer, I can monitor student participation levels
-    - As a lecturer, I can view the forum post count of each student so that I can identify the activity level of students in the forum
-    - As a lecturer, I can view webcast view records of each student so that I can identify the students who did not view webcasts
-    - As a lecturer, I can view file download statistics of each student so that I can identify the students who do not download lecture materials
+    - As a lecturer, I can view the forum post count of each student, so that I can identify the activity level of students in the forum
+    - As a lecturer, I can view webcast view records of each student, so that I can identify the students who did not view webcasts
+    - As a lecturer, I can view file download statistics of each student, so that I can identify the students who do not download lecture materials
 
 #### Steps to Take
 
