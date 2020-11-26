@@ -17,6 +17,14 @@
   - [Notes](./CS3230/notes.md) ([PDF](./CS3230/notes.pdf))
 - [CS3244](./CS3244) (19/20 S2, open book)
   - [Notes](./CS3244/notes.md) ([PDF](./CS3244/notes.pdf))
+- [CS2104](./CS2104) (20/21 S1, open book)
+  - [Notes](./CS2104/notes.md) ([PDF](./CS2104/notes.pdf))
+- [CS2107](./CS2107) (20/21 S1, open book)
+  - [Notes](./CS2107/notes.md) ([PDF](./CS2107/notes.pdf))
+- [CS3103](./CS3103) (20/21 S1, open book)
+  - [Notes](./CS3103/notes.md) ([PDF](./CS3103/notes.pdf))
+- [CS3219](./CS3219) (20/21 S1, open book)
+  - [Notes](./CS3219/notes.md) ([PDF](./CS3219/notes.pdf))
 
 ## Setup
 
