@@ -1,11 +1,11 @@
 # Notes & Cheatsheets
 
-- [CS2040S](./CS2040S) (19/20 S1, open book) 
+- [CS2040S](./CS2040S) (19/20 S1, open book)
   - [Notes](./CS2040S/notes.md)
   - [Problems](./CS2040S/problems.md)
 - [CS2105](./CS2105) (19/20 S1, open book)
   - [Notes](./CS2105/notes.md)
-- [CS2106](./CS2106) (19/20 S1, closed book) 
+- [CS2106](./CS2106) (19/20 S1, closed book)
   - [Midterms Cheatsheet](./CS2106/midterms/midterms.pdf)
   - [Finals Cheatsheet](./CS2106/finals/finals.pdf)
 - [ST2334](./ST2334) (19/20 S1, closed book)
