@@ -958,8 +958,10 @@ A type of **injection attack** on web apps, where an attacker attacks another we
 **Two types of attack**:
 
 - **Reflected (non-persistent)**: attacker embeds malicious script within an otherwise trusted URL
+  - eg. Using phishing or social engineering to lure victims to visit `www.posb.com/search?term=<script>MaliciousFunction(...)</script>`
 - **Stored (persistent)**: attacker injects malicious script into the target web server, which will be embedded into any HTML page the server renders
   - More dangerous than reflected XSS attacks as there is no need to lure victims into clicking a malicious link
+  - eg. Injecting a script into the database which will be queried by all users when visiting the trusted webpage
 
 **Defences**:
 
@@ -968,7 +970,7 @@ A type of **injection attack** on web apps, where an attacker attacks another we
 
 ### Cross Site Request Forgery (CSRF)
 
-A type of **authorization attack** on web apps, where an attacker attacks a web user by issuing a forged request to a vulnerable web server on behalf of the victim user. This **exploits the server's trust of the client**.
+A type of **authorisation attack** on web apps, where an attacker attacks a web user by issuing a forged request to a vulnerable web server on behalf of the victim user. This **exploits the server's trust of the client**.
 
 **With the victim clicking on a URL**:
 
